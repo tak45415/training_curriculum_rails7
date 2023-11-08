@@ -25,7 +25,14 @@ class CalendarsController < ApplicationController
     # Dateオブジェクトは、日付を保持しています。下記のように`.today.day`とすると、今日の日付を取得できます。
     @todays_date = Date.today
     # 例)　今日が2月1日の場合・・・ Date.today.day => 1日
-
+    <div>
+    <% @week_days.each do |day| %>
+      <p><%= day[:month] %>月 <%= day[:date] %>日の予定</p>
+      <% day[:plans].each do |plan| %>
+        <p><%= plan %></p>
+      <% end %>
+    <% end %>
+  </div>
 
     plans = Plan.where(date: @todays_date..@todays_date + 6)
 
